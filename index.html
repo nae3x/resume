@@ -90,9 +90,10 @@
   .job-title{font-weight:600;font-size:1.05rem}
   .job-meta{font-size:13px;color:var(--black)}
   .job-company{font-size:14px;color:var(--black);margin-bottom:.75rem}
-  .job-bullets{list-style:none;padding:0}
+  .job-bullets,.job-bullets ul{list-style:none;padding:0}
   .job-bullets li{font-size:14px;color:var(--black);padding:.35rem 0 .35rem 1.1rem;position:relative;line-height:1.6}
   .job-bullets li::before{content:'•';position:absolute;left:0;color:var(--black);font-size:1.2rem;line-height:1}
+  .job-bullets li li::before{content:'◦'}
 
   /* Education */
   .edu-cards{display:grid;gap:1.25rem}
@@ -164,7 +165,7 @@
       </a>
     </div>
     <div class="section-label" id="about">About me</div>
-    <p>Master's student in Computer Science at TU/e with 6 years of professional software engineering experience in the data analytics industry, specializing in software architecture. Built and operated social-media ingestion pipelines processing over 1 million messages per day, normalizing heterogeneous platform data into a single format for downstream analytics teams, and owned the analytics products consuming that data in production across both microservices and serverless paradigms. Passionate about building high-quality software that balances long-term maintainability, healthy stakeholder collaboration, and on-time delivery.</p>
+    <p>Master's student in Computer Science at TU/e with software engineering experience in the data analytics industry, building data pipelines and user-facing web applications end to end, from requirements gathering to production release. Specializes in software architecture with high cohesion and low coupling. Passionate about building high-quality software that balances long-term maintainability, healthy stakeholder collaboration, and on-time delivery.</p>
   </section>
 
   <section>
@@ -172,10 +173,10 @@
     <div class="skill-group">
       <div class="skill-group-label">Programming Languages</div>
       <div class="skill-tags">
-        <span class="tag">Python</span>
         <span class="tag">TypeScript</span>
         <span class="tag">JavaScript</span>
         <span class="tag">Go</span>
+        <span class="tag">Python</span>
       </div>
     </div>
     <div class="skill-group">
@@ -190,10 +191,9 @@
       <div class="skill-group-label">Databases & storage</div>
       <div class="skill-tags">
         <span class="tag">MongoDB</span>
-        <span class="tag">Elasticsearch</span>
+        <span class="tag">MySQL</span>
         <span class="tag">Google BigQuery</span>
         <span class="tag">Redis</span>
-        <span class="tag">MySQL</span>
         <span class="tag">AWS S3</span>
       </div>
     </div>
@@ -213,12 +213,10 @@
         <span class="tag">GitHub Actions</span>
         <span class="tag">ArgoCD</span>
         <span class="tag">Grafana</span>
-        <span class="tag">AWS EC2</span>
-        <span class="tag">AWS ECR</span>
-        <span class="tag">AWS EKS</span>
         <span class="tag">AWS Lambda</span>
         <span class="tag">AWS API Gateway</span>
         <span class="tag">AWS SAM</span>
+        <span class="tag">AWS EKS</span>
         <span class="tag">AWS Amplify</span>
       </div>
     </div>
@@ -245,12 +243,15 @@
         </div>
         <div class="job-company">Wisesight (Thailand) Co., Ltd. · Thailand</div>
         <ul class="job-bullets">
-          <li>Owned two data analytics products end to end in a peer team of 3 senior engineers, from requirements gathering with product owners through feature design, full-stack implementation, and production operations with GitOps and IaC.</li>
-          <li>Developed a Go worker pipeline on RabbitMQ consuming 1M+ social-media messages/day into a B2B influencer discovery product, alongside the microservices serving it: a Next.js web app and 4 Go (Fiber) API services, deployed on Kubernetes through GitOps with ArgoCD.</li>
-          <li>Protected Kubernetes node stability while giving pods enough resources to run reliably, by measuring average CPU and RAM usage per pod and tuning each pod's resource requests and limits to its measured profile.</li>
-          <li>Developed a serverless social media trend analytics product serving 30k+ users: Next.js on AWS Amplify, TypeScript (Fastify) APIs on AWS Lambda and API Gateway, with infrastructure as code on AWS SAM.</li>
-          <li>Enabled on-demand AI trend summarization despite processing times beyond AWS Lambda's response limit by designing an asynchronous request-reply flow, computing only on the selections users requested instead of pre-processing the whole growing dataset on a schedule.</li>
-          <li>Led the team to restructure both products' codebases for high cohesion and low coupling, improving team velocity and reducing sprint planning time by allowing engineers to identify the scope of impact and distribute workload more effectively.</li>
+          <li>Developed and maintained two data analytics products end to end in a peer team of 3 senior engineers, from gathering requirements to system design, full-stack development, testing, production deployment (GitOps, IaC), and operations.
+            <ul>
+              <li>A B2C social-media trend analytics web application serving 30k+ users, built with Next.js (React, TypeScript) on AWS Amplify, TypeScript (Fastify) APIs on AWS Lambda and API Gateway, and IaC on AWS SAM.</li>
+              <li>A B2B influencer discovery product consuming 1M+ social-media messages/day, built with Next.js and Go (Fiber) on Kubernetes with GitOps.</li>
+            </ul>
+          </li>
+          <li>Led the team to restructure both codebases for high cohesion and low coupling, allowing engineers to identify the scope of a change and implement components in parallel with minimal merge conflicts.</li>
+          <li>Enabled on-demand AI trend summarization beyond AWS Lambda's response limit by designing an asynchronous request-reply flow that computes only what users request.</li>
+          <li>Facilitated team activities such as sprint planning, sprint reviews, feature design sessions, and monthly team health checks.</li>
         </ul>
       </div>
 
@@ -262,10 +263,10 @@
         </div>
         <div class="job-company">Wisesight (Thailand) Co., Ltd. · Thailand</div>
         <ul class="job-bullets">
-          <li>Developed a social-media data pipeline collecting over 1 million messages per day from public accounts on Facebook, Instagram, X, YouTube, TikTok, and web sources, normalizing heterogeneous platform payloads into a single centralized format, then storing them in MongoDB and publishing them over RabbitMQ to the teams that consumed them.</li>
-          <li>Kept the pipeline within third-party platform rate limits by developing a criteria-based account tiering system covering 300,000+ tracked social-media accounts, with automatic periodic re-tiering and per-tier data freshness windows calculated from API token capacity.</li>
-          <li>Owned the pipeline's image-analysis stage: kept message text on the fast path to downstream consumers by duplicating messages so analysis never blocked delivery, re-hosted platform images on S3 to outlive expiring pre-signed URLs, and ran OCR and object detection on all images of a message concurrently.</li>
-          <li>Created and maintained the pipeline's per-channel specification documentation and an onboarding process for new engineers; onboarded and trained 3 engineers.</li>
+          <li>Developed a social-media data pipeline collecting 1M+ messages/day from major social-media platforms and multiple websites, normalizing the messages into one central format, storing them in MongoDB and BigQuery, and publishing them over RabbitMQ to consuming teams.</li>
+          <li>Enabled on-time data collection within social-media platform rate limits by developing a tiering system for 300,000+ data sources, based on criteria such as follower count and posting frequency.</li>
+          <li>Designed and built the pipeline's image-analysis stage (OCR and object detection) on a copy of each message, so message text reached downstream teams without waiting for image analysis, with each message's images processed in parallel and re-hosted on S3 before their source URLs expired.</li>
+          <li>Shortened onboarding for 3 new engineers by writing documentation for each social-media platform, giving the team a quick reference for platform details without going through the whole codebase.</li>
         </ul>
       </div>
 
@@ -280,7 +281,7 @@
         <div class="edu-school">Eindhoven University of Technology (TU/e) · Netherlands</div>
         <div class="edu-date">September 2025 – Present</div>
         <div class="edu-notes">Expected graduation: June 2028</div>
-        <div class="edu-notes">Relevant coursework: Data-Intensive Systems, Architecture of Distributed Systems, Advanced Algorithms</div>
+        <div class="edu-notes">Relevant coursework: Software Evolution, Architecture of Distributed Systems, Engineering Data-Intensive Systems, Software Engineering for AI</div>
       </div>
       <div class="edu-card">
         <div class="edu-degree">BSc Computer Engineering</div>
@@ -300,7 +301,7 @@
       </div>
       <div class="lang-row">
         <span class="lang-name">English</span>
-        <span class="lang-level">Professional working (IELTS 7)</span>
+        <span class="lang-level">Professional working proficiency (C1)</span>
       </div>
       <div class="lang-row">
         <span class="lang-name">Dutch</span>
